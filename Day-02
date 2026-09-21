@@ -1,0 +1,11 @@
+| Concept        | Basic meaning                                           |
+| -------------- | ------------------------------------------------------- |
+| Process        | Running program with its own memory space               |
+| Thread         | Execution unit inside a process                         |
+| Concurrency    | Multiple tasks make progress by taking turns            |
+| Parallelism    | Multiple tasks execute simultaneously on multiple cores |
+| Context switch | CPU changes from one execution context to another       |
+| Race condition | Result depends on timing of concurrent access           |
+| Lock           | Allows controlled access to shared data                 |
+| Deadlock       | Threads wait forever for each other's resources         |
+| Semaphore      | Limits how many tasks can access a resource at once     |
