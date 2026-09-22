@@ -9,3 +9,144 @@
 | Lock           | Allows controlled access to shared data                 |
 | Deadlock       | Threads wait forever for each other's resources         |
 | Semaphore      | Limits how many tasks can access a resource at once     |
+
+
+
+
+Part 1 — Linux Practical
+
+Now let's see the process/thread concepts in Linux.
+
+Run:
+
+ps -ef | head
+
+This shows running processes.
+
+Now:
+
+echo $$
+
+This shows the PID of your current shell.
+
+Remember:
+
+PID = Process ID
+
+Find your Python process
+
+Run your thread program:
+
+python3 thread_demo.py
+
+While it is running, open another terminal:
+
+ps -ef | grep python
+
+You should see your Python process.
+
+Now inspect it with:
+
+ps -o pid,ppid,stat,cmd -p <PID>
+
+You can replace <PID> with the actual number.
+
+You'll see things such as:
+
+PID
+PPID
+STAT
+CMD
+Remember
+
+PID → process ID
+PPID → parent process ID
+STAT → process state/status
+
+Part 2 — Observe CPU/Memory
+
+Run:
+
+top
+
+You'll see processes using:
+
+CPU
+MEMORY
+PID
+
+This is something you'll use constantly in DevOps/SRE.
+
+Press:
+
+q
+
+to exit.
+
+Part 3 — Kill a Process
+
+Start something that keeps running:
+
+sleep 300
+
+In another terminal:
+
+ps -ef | grep "sleep 300"
+
+Find its PID.
+
+Then:
+
+kill <PID>
+
+Check again:
+
+ps -ef | grep "sleep 300"
+
+The process should be gone.
+
+You just performed a basic process lifecycle operation.
+
+Part 8 — See Threads From Linux
+
+Run the semaphore program:
+
+python3 semaphore_demo.py
+
+While it is running, find its PID and execute:
+
+ps -T -p <PID>
+
+This lets you see the threads belonging to that process.
+
+Conceptually:
+
+Process PID 5000
+   ├── Thread
+   ├── Thread
+   ├── Thread
+   ├── Thread
+   └── Thread
+
+This connects everything:
+
+Linux process
+      ↓
+Python process
+      ↓
+Python threads
+      ↓
+Shared memory
+      ↓
+Lock / Semaphore
+      ↓
+Concurrency
+Day 2 Practical Check
+
+Before we finish Day 2, tell me what you observed from these three things:
+
+1. In thread_demo.py, did Thread-1 and Thread-2 output interleave?
+
+2. In the semaphore program with Semaphore(2), how many threads were inside at one time?
+
+3. What is the difference between PID and PPID?
