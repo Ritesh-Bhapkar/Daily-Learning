@@ -1,0 +1,139 @@
+Day 3 – Part 1: What is a Linked List?
+Basic definition (remember this)
+
+A Linked List is a collection of nodes where each node stores data and the address of the next node.
+
+What is a Node?
+
+A node has 2 parts:
+
+Data – the value (5, 10, 15)
+
+Next – points to the next node
+
+The last node points to NULL, meaning the list ends there.
+
+Real-life analogy
+
+Think of a treasure hunt.
+
+Paper 1 says: "Go to Paper 2."
+
+Paper 2 says: "Go to Paper 3."
+
+Paper 3 says: "Stop."
+
+Each paper knows only the next location, just like each node knows only the next node.
+
+Behind the scenes
+
+Unlike an array, Linked List nodes do not need to sit next to each other in memory.
+
+The OS stores each node wherever free memory is available, and the next pointer connects them.
+
+Why do companies use it?
+
+Fast insertion at the beginning.
+
+Fast deletion when you already have the node.
+
+Used inside HashMaps, LRU Cache, Browser History, and OS schedulers.
+
+
+
+
+Day 3 – Part 2: Head and Traversal
+Basic definition
+
+The head is the first node of a Linked List. Without the head, we cannot access the list.
+
+The head points to the first node (10). From there, we follow next pointers to visit every node.
+
+Behind the scenes
+
+The computer does this:
+
+Head
+ ↓
+10 → 20 → 30 → NULL
+
+Start at Head.
+
+Read 10.
+
+Follow next to 20.
+
+Follow next to 30.
+
+Stop at NULL.
+
+This is called traversal.
+
+Python example
+current = head
+
+while current:
+    print(current.data)
+    current = current.next
+
+Don't memorize it—we'll practice writing it later.
+
+Quick knowledge check
+
+If the Linked List is:
+
+Head → 5 → 8 → 12 → NULL
+
+Question: After printing 8, where does current go next, and when does the loop stop? (Answer in 2 lines.)
+
+
+
+
+
+
+Day 3 – Part 3: Insert at the Beginning (Head)
+Basic definition (easy to remember)
+
+Insert at the beginning means creating a new node and making it the new head.
+
+Before
+We want to insert 2
+
+Result:
+
+Head → 2 → 5 → 8 → 12 → NULL
+Behind the scenes (most important)
+
+The computer does 2 steps:
+
+Step 1: New node points to the old head.
+
+2 → 5
+
+Step 2: Move the head to the new node.
+
+Head
+ ↓
+2 → 5 → 8 → 12
+
+Notice that we never move all the nodes. We only change two pointers, which is why this operation is very fast.
+
+Python code
+new_node.next = head
+head = new_node
+
+Don't memorize it—remember the 2-step idea.
+
+Why is it O(1)?
+
+Because no matter if there are 5 nodes or 5 million nodes, we only change two pointers.
+
+Quick knowledge check (2 lines)
+
+Current list:
+
+Head → 10 → 20 → 30
+
+You insert 5 at the beginning.
+
+Question: Which pointer changes first—head or new_node.next? And what is the final list?
