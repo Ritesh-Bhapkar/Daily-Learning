@@ -13,7 +13,7 @@ def worker(name):
 
 threads = []
 
-for i in range(5):
+for i in range(10):
     t = threading.Thread(target=worker, args=(f"Thread-{i}",))
     threads.append(t)
     t.start()
