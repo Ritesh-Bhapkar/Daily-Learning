@@ -8,7 +8,7 @@ def worker(name):
 
     with semaphore:
         print(f"{name} entered")
-        time.sleep(300)
+        time.sleep(200)
         print(f"{name} leaving")
 
 threads = []
