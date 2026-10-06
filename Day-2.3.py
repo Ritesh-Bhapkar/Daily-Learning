@@ -6,7 +6,7 @@ lock = threading.Lock()
 def add_money():
     global balance
 
-    for _ in range(100000):
+    for _ in range(1000):
         with lock:
             balance += 1
 
