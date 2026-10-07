@@ -1,0 +1,75 @@
+
+### 📚 Day 8 — Sliding Window Syllabus
+
+Today we'll cover:
+
+1. **What is Sliding Window?**
+2. Why do we need it?
+3. How the window works
+4. **Fixed-size window**
+5. **Variable-size window**
+6. How `left` and `right` move
+7. Time & Space Complexity
+8. How to recognize Sliding Window
+9. LeetCode problem
+10. You solve → I check
+11. Final revision + interview questions
+
+---
+
+## 1️⃣ What is Sliding Window?
+
+Imagine you have an array:
+
+```text
+[2, 1, 5, 1, 3, 2]
+```
+
+And someone asks:
+
+> Find the maximum sum of **3 consecutive elements**.
+
+Instead of repeatedly calculating:
+
+```text
+2 + 1 + 5
+1 + 5 + 1
+5 + 1 + 3
+1 + 3 + 2
+```
+
+we create a **window** containing 3 elements:
+
+```text
+[2, 1, 5]  1  3  2
+ ↑-------↑
+  window
+```
+
+Then we **slide** that window:
+
+```text
+2  [1, 5, 1]  3  2
+```
+
+Then:
+
+```text
+2  1  [5, 1, 3]  2
+```
+
+Then:
+
+```text
+2  1  5  [1, 3, 2]
+```
+
+That's why it's called **Sliding Window**.
+
+### The main idea
+
+> **Sliding Window means maintaining a continuous range of elements and moving that range through the array instead of recalculating everything from scratch.**
+
+Don't worry about the code yet. **First understand this idea.**
+
+**Tell me in your own words: what do you understand by "window" here?**
