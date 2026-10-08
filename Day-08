@@ -73,3 +73,226 @@ That's why it's called **Sliding Window**.
 Don't worry about the code yet. **First understand this idea.**
 
 **Tell me in your own words: what do you understand by "window" here?**
+
+
+
+
+
+1. First, what is k?
+
+k simply means the size of our window.
+
+Example:
+
+numbers = [2, 1, 5, 1, 3, 2]
+k = 3
+
+So our window must contain 3 elements:
+
+[2, 1, 5]
+
+Here:
+
+n = total number of elements in the array = 6
+k = number of elements inside each window = 3
+2. What happens WITHOUT Sliding Window?
+
+Suppose we want the sum of every group of 3 consecutive elements.
+
+We have:
+
+[2, 1, 5, 1, 3, 2]
+
+First window:
+
+[2, 1, 5]  1  3  2
+
+We calculate:
+
+2 + 1 + 5 = 8
+
+That's 3 operations.
+
+Second window:
+
+2  [1, 5, 1]  3  2
+
+Again we calculate everything:
+
+1 + 5 + 1 = 7
+
+Again 3 operations.
+
+Third:
+
+2  1  [5, 1, 3]  2
+
+Again:
+
+5 + 1 + 3 = 9
+
+Again 3 operations.
+
+So we're repeatedly calculating k elements for every window.
+
+3. Where does O(n × k) come from?
+
+Think very simply:
+
+There are roughly n windows/work positions.
+
+For each window, we may need to process k elements.
+
+Therefore:
+
+number of windows/work × work per window
+
+       n       ×       k
+
+       ↓               ↓
+   positions      elements to calculate
+
+So:
+
+O(n × k)
+
+For our small example:
+
+n = 6
+k = 3
+
+6 × 3 = 18
+
+The exact number isn't important. The important idea is:
+
+If every window requires us to recalculate all k elements, the work grows with both n and k.
+
+4. Now Sliding Window avoids that repeated work
+
+Here's where the magic happens.
+
+First window:
+
+[2, 1, 5]  1  3  2
+
+Sum:
+
+2 + 1 + 5 = 8
+
+Now slide one position:
+
+2  [1, 5, 1]  3  2
+
+Look carefully.
+
+We already know:
+
+old sum = 8
+
+We don't need to calculate:
+
+1 + 5 + 1
+
+again.
+
+Why?
+
+Because only two things changed:
+
+2 LEFT the window
+1 ENTERED the window
+
+So:
+
+old sum = 8
+
+8 - 2 = 6
+6 + 1 = 7
+
+New sum:
+
+7
+
+That's it!
+
+5. Slide again
+
+Current window:
+
+2  [1, 5, 1]  3  2
+
+Sum = 7
+
+Move one step:
+
+2  1  [5, 1, 3]  2
+
+Again:
+
+1 leaves
+3 enters
+
+So:
+
+7 - 1 + 3 = 9
+
+We didn't recalculate:
+
+5 + 1 + 3
+
+We simply reused the previous answer.
+
+6. So why does it become O(n)?
+
+This is the key.
+
+For every slide, we're doing approximately the same constant amount of work:
+
+remove ONE element
+add ONE element
+
+That's only 2 operations.
+
+It doesn't matter whether the window contains:
+
+k = 3
+
+or:
+
+k = 100
+
+Once we already know the previous window's sum, we don't recalculate all 100 elements.
+
+We just do:
+
+old sum - outgoing value + incoming value
+
+So as the array gets bigger, we move through it once:
+
+element 1
+element 2
+element 3
+element 4
+element 5
+...
+element n
+
+Therefore:
+
+Time = O(n) ✅
+
+The easiest way to remember it
+
+Without Sliding Window:
+
+Every window → recalculate all k elements → O(n × k)
+
+With Sliding Window:
+
+Every window → remove 1 + add 1 → O(n)
+
+And remember:
+
+n = total array size. k = window size.
+
+That's the fundamental reason Sliding Window is powerful.
