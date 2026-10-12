@@ -1,0 +1,33 @@
+Topic 1: What is Recursion?
+Recursion means a function calls itself to solve a smaller version of the same problem.
+Imagine standing between two mirrors: you see a repeated image, but in programming, the function must have a stopping condition so it doesn't keep calling itself forever.
+Example:
+def count_down(n):    if n == 0:       # Base case: stop        return    print(n)    count_down(n - 1)  # Recursive call
+
+
+
+If we call count_down(3), it prints 3, then 2, then 1, and stops at 0.
+
+
+
+
+
+Topic 3: The Call Stack
+Look at our code:
+def count_down(n):    if n == 0:        return    print(n)    count_down(n - 1)
+
+
+
+When we call count_down(3), Python pauses each unfinished call while the next one runs.
+Python's call stack
+count_down(3) — waiting for the next call
+
+count_down(2) — waiting for the next call
+
+count_down(1) — waiting for the next call
+
+count_down(0) — base case reached; returns
+
+
+Once count_down(0) returns, Python finishes the paused calls in reverse order: count_down(1), then count_down(2), then count_down(3).
+This is why the call stack follows LIFO: Last In, First Out.
