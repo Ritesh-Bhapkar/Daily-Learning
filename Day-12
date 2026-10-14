@@ -1,0 +1,18 @@
+Day 12 — Trees 🌳
+
+First, remember what a tree looks like:
+       1
+      / \
+     2   3
+
+
+Node 1 is the root. Node 2 is its left child, and node 3 is its right child.
+What does recursion mean here?
+Recursion means a function calls itself. In tree problems, the function can call itself on the left child and right child to solve smaller parts of the tree.
+Imagine we have a function called process(node):
+- process(1) works on the whole tree.
+- process(2) works on the subtree starting at node 2.
+- process(3) works on the subtree starting at node 3.
+The key idea is that each child can be treated as the root of its own smaller tree.
+Quick check
+When we call process(2), what does node 2 represent in that function call?
