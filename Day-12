@@ -16,3 +16,33 @@ Imagine we have a function called process(node):
 The key idea is that each child can be treated as the root of its own smaller tree.
 Quick check
 When we call process(2), what does node 2 represent in that function call?
+
+
+
+
+
+
+
+
+Day 12 — Trees 🌳
+Today's syllabus
+1. Revise tree basics: root, parent, child, leaf, depth, and height.
+2. Revise binary tree types: full, complete, and perfect.
+3. Practise preorder, inorder, postorder, and level-order traversal.
+4. Understand recursive tree traversal with code tracing.
+5. Solve LeetCode 104 — Maximum Depth of Binary Tree at the end.
+6. Revision and interview questions.
+Topic 1: Quick revision of tree basics
+Look at this tree:
+       10
+      /  \
+     5    15
+    / \
+   3   7
+
+
+- Root: 10 — the top node.
+- Parent: 5 is the parent of 3 and 7.
+- Leaf: 3, 7, and 15 — nodes with no children.
+- Depth: number of edges from the root; node 7 has depth 2.
+- Height: longest path from a node down to a leaf; the root has height 2 edges, or 3 nodes along that path.
