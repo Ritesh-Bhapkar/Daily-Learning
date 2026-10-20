@@ -1,0 +1,53 @@
+Day 13 — Trees: Binary Search Tree (BST)
+Topic 1: What is a BST?
+A Binary Search Tree (BST) is a binary tree that follows a specific rule:
+- Values smaller than a node go to its left.
+- Values larger than a node go to its right.
+Example:
+        8
+       / \
+      4   12
+     / \  / \
+    2  6 10 14
+
+
+For node 8:
+- 4 is on the left because \(4 < 8\).
+- 12 is on the right because \(12 > 8\).
+This rule applies throughout the tree, not just to the root.
+Why is this useful?
+Suppose you want to find 10. You start at 8. Because 10 > 8, you go right to 12. Since 10 < 12, you go left and find 10.
+
+You avoid searching the entire tree when its structure lets you eliminate branches.
+Complexity
+- Search: \(O(\log n)\) on a balanced BST; \(O(n)\) in the worst case if the tree becomes skewed.
+- Space: \(O(1)\) auxiliary space for iterative search; recursive search uses \(O(h)\) call-stack space.
+Quick check
+In the example tree, where should we go when searching for 6 at node 8?
+
+A. Left
+B. Right
+C. Stop immediately
+
+
+
+Correct! ✅ Since 6 < 8, go left to node 4. Then, because 6 > 4, go right and find node 6.
+Day 13 — Topic 2: Searching in a BST
+Here’s the code:
+def search(root, target):    while root:        if root.val == target:            return True        elif target < root.val:            root = root.left        else:            root = root.right    return False
+
+
+
+Trace with target = 6
+Using our tree:
+        8
+       / \
+      4   12
+     / \
+    2   6
+
+
+1. Start at 8: 6 < 8, so move left to 4.
+2. At 4: 6 > 4, so move right to 6.
+3. At 6: target matches, so return True.
+Complexity: Time \(O(h)\), where \(h\) is tree height — \(O(\log n)\) if balanced, \(O(n)\) in the worst case. Auxiliary space \(O(1)\), because this iterative version uses no growing data structure.
