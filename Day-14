@@ -1,0 +1,72 @@
+Correct! ✅ In a min-heap, the smallest value is always at the root.
+
+Let's continue Day 14 step by step.
+
+## Topic 2: Min-heap vs. Max-heap
+
+A heap follows a parent-child ordering rule.
+
+### Min-heap
+
+Parent ≤ children
+
+The smallest element is at the top.
+
+### Max-heap
+
+Parent ≥ children
+
+The largest element is at the top.
+
+### Where are heaps used in real life?
+
+- Min-heap: Find the next earliest task or lowest-priority number.
+- Max-heap: Quickly access the highest score or largest value.
+- Priority queue: Process items according to priority instead of simply arrival order.
+
+One important detail: a heap is not completely sorted. For example, in a min-heap, the left child doesn't necessarily have to be smaller than the right child.
+
+## Topic 3: Build a min-heap in Python
+
+Python provides a built-in module called `heapq`. It implements a min-heap.
+
+```
+import heapqnumbers = [8, 2, 12, 5, 9]heapq.heapify(numbers)print(numbers)print(numbers[0])
+```
+
+The first output is a valid heap arrangement, such as:
+
+```
+[2, 5, 12, 8, 9]
+2
+```
+
+Why isn't the list fully sorted? Because `heapq` only guarantees that the smallest value is at index `0` and that each parent is no larger than its children.
+
+### Three operations to know
+
+| Operation                    | Purpose                              | Time            |
+| ---------------------------- | ------------------------------------ | --------------- |
+| `heapq.heapify(numbers)`     | Convert a list into a heap           | \\(O(n)\\)      |
+| `heapq.heappush(numbers, 4)` | Insert a value                       | \\(O(\log n)\\) |
+| `heapq.heappop(numbers)`     | Remove and return the smallest value | \\(O(\log n)\\) |
+
+## Your turn — check your understanding
+
+Suppose we run:
+
+```
+import heapqnumbers = [7, 3, 10, 1, 5]heapq.heapify(numbers)print(heapq.heappop(numbers))
+```
+
+What will this print?
+
+A) `7`
+
+B) `1`
+
+C) `3`
+
+D) The entire sorted list
+
+Check answer
