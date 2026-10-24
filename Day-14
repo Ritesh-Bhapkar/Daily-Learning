@@ -70,3 +70,118 @@ C) `3`
 D) The entire sorted list
 
 Check answer
+
+
+
+
+
+
+Let's solve LeetCode 215 — Kth Largest Element in an Array, step by step from the basics.
+
+## Step 1: Understand the idea
+
+Given:
+
+```
+numbers = [3, 2, 1, 5, 6, 4]k = 2
+```
+
+We need the 2nd largest number, which is `5`.
+
+Instead of sorting the entire array, we'll keep only the 2 largest numbers in a min-heap.
+
+## Step 2: Understand the code
+
+```
+import heapqnumbers = [3, 2, 1, 5, 6, 4]k = 2heap = []for num in numbers:    heapq.heappush(heap, num)    if len(heap) > k:        heapq.heappop(heap)print(heap[0])
+```
+
+## Step 3: Visualize each iteration
+
+We keep the two largest numbers seen so far.
+
+1\. Read `3`
+
+### 3
+
+Heap: `[3]`
+
+Only one number; keep it.
+
+2\. Read `2`
+
+### 2
+
+### 3
+
+Heap: `[2, 3]`
+
+Two numbers; keep both. The smallest, `2`, is at the top.
+
+3\. Read `1`
+
+### 2
+
+### 3
+
+### 1
+
+Three numbers now, so remove the smallest (`1`). Heap returns to `[2, 3]`.
+
+4\. Read `5`
+
+### 3
+
+### 5
+
+Push `5`, then remove `2`. Heap becomes `[3, 5]`.
+
+5\. Read `6`
+
+### 5
+
+### 6
+
+Push `6`, then remove `3`. Heap becomes `[5, 6]`.
+
+6\. Read `4`
+
+### 5
+
+### 6
+
+Push `4`, then remove `4` because it's the smallest. Heap stays `[5, 6]`.
+
+Final answer
+
+# 5
+
+`heap[0]` is `5`, the 2nd largest number.
+
+## Step 4: Why does this work?
+
+- The heap holds only the largest `k` numbers encountered so far.
+- Whenever it contains more than `k` numbers, we remove the smallest.
+- At the end, the smallest number among the largest `k` numbers is the kth largest overall.
+
+Time complexity: \\(O(n\log k)\\). Space complexity: \\(O(k)\\).
+
+## Your turn
+
+Suppose:
+
+```
+numbers = [8, 1, 7, 3]k = 2
+```
+
+After processing all four numbers, what will `heap[0]` be?
+
+3
+
+7
+
+8
+
+1
+
+Check answer
