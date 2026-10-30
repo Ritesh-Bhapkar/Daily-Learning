@@ -1,0 +1,27 @@
+Exactly! You're understanding the logic. ✅
+
+One small clarification:
+
+- We maintain only the 3 largest numbers in the heap.
+- Whenever a new number arrives and the heap exceeds size `k`, we remove the smallest.
+- The root (`heap[0]`) is then the 3rd largest number.
+
+For example, `[4, 5, 8, 10]` with `k = 3`:
+
+Remove `4`, leaving `[5, 8, 10]`.
+
+The root is `5`, so the 3rd largest number is `5`.
+
+## Next: Complete LeetCode 703 solution
+
+```
+import heapqclass KthLargest:    def __init__(self, k: int, nums: list[int]):        self.k = k        self.heap = nums        heapq.heapify(self.heap)        while len(self.heap) > k:            heapq.heappop(self.heap)    def add(self, val: int) -> int:        heapq.heappush(self.heap, val)        if len(self.heap) > self.k:            heapq.heappop(self.heap)        return self.heap[0]
+```
+
+Time complexity:
+
+- Initialization: \\(O(n + (n-k)\log n)\\) worst case.
+- Each `add()`: \\(O(\log k)\\).
+- Space: \\(O(k)\\) after initialization.
+
+Try submitting this on LeetCode 703. Then we'll trace every line and understand its complexity with actual examples.
