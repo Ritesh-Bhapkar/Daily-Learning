@@ -1,0 +1,213 @@
+## Day 17 — Graph Fundamentals
+
+New topic
+
+I've checked your six-month roadmap. Today's exact topics are:
+
+1. Vertices and edges — understand the building blocks of graphs.
+2. Directed vs. undirected graphs.
+3. Weighted vs. unweighted graphs.
+4. Adjacency list vs. adjacency matrix — understand their differences and trade-offs.
+
+### Step 1: What is a Graph?
+
+A Graph is a data structure used to represent relationships or connections between things.
+
+For example, imagine four cities connected by roads:
+
+Illustrative graph: cities connected by roads
+
+There are two important terms:
+
+- Vertex (Node): An individual item, such as a city.
+- Edge: A connection between two vertices, such as a road.
+
+For this graph:
+
+- A, B, C and D are vertices.
+- The lines connecting them are edges.
+
+Simple interview definition: A graph is a non-linear data structure consisting of vertices (nodes) and edges (connections).
+
+
+
+
+
+## Day 17 — Step 2: Directed vs. Undirected Graphs
+
+There are two types of graph connections.
+
+### 1. Undirected Graph
+
+A connection works in both directions.
+
+Example: If Alice and Bob are friends, Alice is connected to Bob, and Bob is connected to Alice.
+
+Undirected: A ↔ B
+
+### 2. Directed Graph
+
+A connection works in only one direction.
+
+Example: Alice follows Bob on Instagram, but Bob doesn't necessarily follow Alice.
+
+Directed: A → B
+
+Remember:
+
+- Undirected = connection in both directions.
+- Directed = connection in one direction.
+
+
+
+Next: Weighted vs. unweighted graphs
+1. Weighted graph: Each connection (edge) has a value, such as distance, time, or cost.
+
+Example: A —5 km— B
+
+2. Unweighted graph: Connections exist, but no value is assigned to them.
+
+Example: A — B
+
+Interview definitions:
+- Weighted graph: A graph where edges have associated values or weights.
+- Unweighted graph: A graph where edges represent connections without weights.
+
+
+
+
+
+Correct!
+
+&#x20;It's a weighted graph because the edge has a value: 10 km.
+
+
+
+### Next: Adjacency List vs. Adjacency Matrix
+
+Suppose we have an undirected graph:
+
+A, B and C are all connected to each other.
+
+1\. Adjacency List
+
+Stores each vertex with its neighbours.
+
+```
+graph = {    "A": ["B", "C"],    "B": ["A", "C"],    "C": ["A", "B"]}
+```
+
+2\. Adjacency Matrix
+
+Stores connections in a 2D table. `1` means connected; `0` means not connected.
+
+|   | A | B | C |
+| - | - | - | - |
+| A | 0 | 1 | 1 |
+| B | 1 | 0 | 1 |
+| C | 1 | 1 | 0 |
+
+Remember the difference:
+
+- Adjacency list: stores neighbours.
+- Adjacency matrix: stores connections in a table.
+
+Quick check: If a graph has 1,000 vertices but only 1,500 edges, which representation generally uses less memory: adjacency list or adjacency matrix?
+
+
+Let's understand this from absolute basics. Don't worry about memorising the complexity yet.
+
+Imagine a graph of 4 people: A, B, C and D.
+
+Connections:
+
+- A is connected to B.
+- A is connected to C.
+- B is connected to D.
+
+## 1. Space complexity — how much memory is used?
+
+Adjacency List
+
+It stores only the people each person is connected to.
+
+```
+graph = {    "A": ["B", "C"],    "B": ["A", "D"],    "C": ["A"],    "D": ["B"]}
+```
+
+It stores only the actual connections.
+
+Adjacency Matrix
+
+It creates a table for every possible pair of people, even if they aren't connected.
+
+|   | A | B | C | D |
+| - | - | - | - | - |
+| A | 0 | 1 | 1 | 0 |
+| B | 1 | 0 | 0 | 1 |
+| C | 1 | 0 | 0 | 0 |
+| D | 0 | 1 | 0 | 0 |
+
+Here, `1` means connected and `0` means not connected.
+
+For 4 people, the matrix needs 4 × 4 = 16 cells.
+
+Now imagine 1,000 people:
+
+- Matrix: 1,000 × 1,000 = 1,000,000 cells.
+- List: stores the 1,000 people and their actual connections only.
+
+That's why:
+
+- Adjacency List: O(V + E) — memory grows with vertices and edges.
+- Adjacency Matrix: O(V²) — memory grows with the square of the number of vertices.
+
+`V` means number of vertices; `E` means number of edges.
+
+## 2. Check if an edge exists — is A connected to D?
+
+Adjacency List:
+
+Look through A's neighbour list:
+
+```
+"A": ["B", "C"]
+```
+
+Check B, then C. D isn't there.
+
+If A has 2 neighbours, you may need to check 2 entries. If A has 100 neighbours, you may need to check 100 entries.
+
+That's O(degree). Degree means the number of neighbours a vertex has.
+
+Adjacency Matrix:
+
+Directly look at:
+
+```
+matrix["A"]["D"]
+```
+
+You immediately get `0`.
+
+No searching needed. That's O(1) — constant time.
+
+## 3. Iterate neighbours — find everyone connected to A
+
+Adjacency List: A's list is `["B", "C"]`. You visit just 2 neighbours. That's O(degree).
+
+Adjacency Matrix: You must check the entire A row: A, B, C and D. That's 4 cells. For 1,000 vertices, you'd check 1,000 cells. That's O(V).
+
+## Final simple comparison
+
+| What are you doing?                  | Better representation |
+| ------------------------------------ | --------------------- |
+| Save memory when there are few edges | Adjacency List        |
+| Check a connection very quickly      | Adjacency Matrix      |
+| Visit only actual neighbours         | Adjacency List        |
+
+Remember: An adjacency list stores actual connections. An adjacency matrix reserves space for every possible connection.
+
+### Check your understanding
+
+Suppose there are 1,000 people, but each person is connected to only 2 or 3 people. Which representation would you choose to save memory, and why?
